@@ -17,10 +17,10 @@ Antes de tentar compilar ou rodar o programa, tenha o arquivo teste salvo na pas
 
 ### No Linux:
 Para compilar o programa, digite no terminal:
-   'make compile'
+- **'make compile'**
 Para executar o programa, repita o processo anterior no terminal, mas trocando 'compile' por 'run'
 
 ### No Windows:
 Para compilar o programa, digite no terminal:
-   'mingw32-make compile'
+- **'mingw32-make compile'**
 Para executar o programa, repita o processo anterior no terminal, mas trocando 'compile' por 'run'
