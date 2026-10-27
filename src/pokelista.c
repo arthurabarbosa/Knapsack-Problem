@@ -82,13 +82,11 @@ int imprime_lista(PokeLista *lista) {
         return 0;
     }
     Celula *atual = lista->primeiro->prox;
-    int aux = 1;
 
     while (atual != NULL) {
         printf("ID: %d | Nome: %s | Tipo: %s | Poder: %d | Energia: %d\n", atual->poke.id, atual->poke.nome, atual->poke.tipo, atual->poke.pt_poder, atual->poke.energia_gasta);
         
-        atual = atual->prox;
-        aux++; 
+        atual = atual->prox; 
     }
 
     return 1;

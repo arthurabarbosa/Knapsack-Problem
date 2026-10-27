@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 #include "pokemon.h"
 #include "pokelista.h"
@@ -61,7 +60,7 @@ int main() {
     printf("=== Melhor Equipe Encontrada === \n");
     printf("Poder Total: %d\n", poder_total);
     printf("Energia Total Consumida: %d / %d\n", energia_total, limite_energia);
-    printf("Tempo de Execucao: %f segundos (%f ms)\n\n", tempo_execucao, tempo_execucao*1000);
+    printf("Tempo de Execucao: %f segundos (%f ms)\n\n", tempo_execucao, tempo_execucao*1000.0);
 
     printf("Pokemons Selecionados para a Equipe:\n");
     imprime_lista(&equipe_escolhida);
