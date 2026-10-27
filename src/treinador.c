@@ -18,6 +18,27 @@ int insere_pokemon_treinador(Treinador *tr, Pokemon pk) {
     return 0;
 }
 
+// Distribui os pokemons da equipe escolhida de forma alternada entre os dois treinadores
+int distribui_equipes(Treinador *t1, Treinador *t2, PokeLista *equipe_escolhida) {
+    if (equipe_escolhida == NULL || equipe_escolhida->primeiro == equipe_escolhida->ultimo) {
+        return 0;
+    }
+
+    Celula *atual = equipe_escolhida->primeiro->prox;
+    int alternar = 0;
+    
+    while (atual != NULL) {
+        if (alternar % 2 == 0) {
+            insere_pokemon_treinador(t1, atual->poke);
+        } else {
+            insere_pokemon_treinador(t2, atual->poke);
+        }
+        atual = atual->prox;
+        alternar++;
+    }
+    return 1;
+}
+
 // Exibe informações sobre o treinador 
 int imprime_treinador(Treinador *tr) {
     printf("Treinador(a) %s", tr->nome);

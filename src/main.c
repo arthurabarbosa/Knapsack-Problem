@@ -86,19 +86,8 @@ int main() {
     inicializa_treinador(&t1, 1, nome_t1);
     inicializa_treinador(&t2, 2, nome_t2);
 
-    // Distribui os pokemons da equipe vencedora de forma alternada entre os dois treinadores
-    Celula *atual = equipe_escolhida.primeiro->prox;
-    int alternar = 0;
-    while (atual != NULL) {
-        if (alternar % 2 == 0) {
-            insere_pokemon_treinador(&t1, atual->poke); // Atribui ao primeiro treinador
-        } else {
-            insere_pokemon_treinador(&t2, atual->poke); // Atribui ao segundo treinador
-        }
-        atual = atual->prox;
-        alternar++;
-    }
-
+    distribui_equipes(&t1, &t2, &equipe_escolhida);
+    
     // Exibe o conteudo final das mochilas de cada treinador
     printf("=== Equipes dos Treinadores ===\n");
     printf("Treinador 1: %s\n", t1.nome);
