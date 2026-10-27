@@ -85,14 +85,10 @@ int imprime_lista(PokeLista *lista) {
     int aux = 1;
 
     while (atual != NULL) {
-        printf("ID do %do Pokemon: %d\n", aux, atual->poke.id);
-        printf("Nome do %do Pokemon: %s\n", aux, atual->poke.nome);
-        printf("\n");
-        printf("Numero do %do Pokemon na Pokedex: %d\n", aux, atual->poke.numero_pokedex);
-        printf("Coordenadas do %do Pokemon: (%d,%d)\n", aux, atual->poke.x, atual->poke.y);
+        printf("ID: %d | Nome: %s | Tipo: %s | Poder: %d | Energia: %d\n", atual->poke.id, atual->poke.nome, atual->poke.tipo, atual->poke.pt_poder, atual->poke.energia_gasta);
         
         atual = atual->prox;
-        aux++;
+        aux++; 
     }
 
     return 1;
