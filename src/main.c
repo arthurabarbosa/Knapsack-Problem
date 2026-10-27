@@ -4,7 +4,7 @@
 #include "pokemon.h"
 #include "pokelista.h"
 #include "treinador.h"
-#include "algoritmos.h"
+#include "combinacoes.h"
 
 int main() {
     // Abre o ficheiro de entrada em modo de leitura
@@ -87,7 +87,7 @@ int main() {
     inicializa_treinador(&t2, 2, nome_t2);
 
     distribui_equipes(&t1, &t2, &equipe_escolhida);
-    
+
     // Exibe o conteudo final das mochilas de cada treinador
     printf("=== Equipes dos Treinadores ===\n");
     printf("Treinador 1: %s\n", t1.nome);
