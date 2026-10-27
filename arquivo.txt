@@ -1,12 +1,12 @@
-Ash                             // Nome do primeiro treinador
-Misty                           // Nome do segundo treinador
-10                              // Quantidade de Pokémon disponíveis (N)
-250                             // Energia total disponível
+Ash
+Misty
+10
+250
 
 1 Bulbasaur Planta 40 30
 4 Charmander Fogo 50 40
 7 Squirtle Agua 30 20
-25 Pikachu Eletrico 60 50       //Infos de cada um dos N Pokémon
+25 Pikachu Eletrico 60 50
 16 Pidgey Voador 20 10
 133 Eevee Normal 45 25
 143 Snorlax Normal 80 65

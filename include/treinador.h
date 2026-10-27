@@ -18,6 +18,4 @@ int insere_pokemon_treinador(Treinador *tr, Pokemon pk);
 // Imprime no terminal o status do treinador
 int imprime_treinador(Treinador *tr);
 
-int combinacao_equipes(Treinador *tr, int N, int energia);
-
 #endif
