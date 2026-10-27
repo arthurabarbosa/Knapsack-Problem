@@ -16,11 +16,11 @@ O projeto conta com um Makefile automatizado para facilitar a compilação e exe
 Antes de tentar compilar ou rodar o programa, tenha o arquivo teste salvo na pasta do projeto com o nome 'arquivo.txt'.
 
 ### No Linux:
-Para compilar o programa, digite no terminal:
+Para compilar e executar o programa, digite no terminal:
 - **'make compile'**
-Para executar o programa, repita o processo anterior no terminal, mas trocando 'compile' por 'run'
+- **'make run'**
 
 ### No Windows:
-Para compilar o programa, digite no terminal:
+Para compilar e executar o programa, digite no terminal:
 - **'mingw32-make compile'**
-Para executar o programa, repita o processo anterior no terminal, mas trocando 'compile' por 'run'
+- **'mingw32-make run'**
