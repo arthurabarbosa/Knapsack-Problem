@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "algoritmos.h"
+#include "combinacoes.h"
 
 // Funcao recursiva pura para gerar todas as combinacoes possiveis de pokemons (forca bruta exaustiva)
 void gera_combinacoes(Pokemon *vetor, int n, int indice, Pokemon *atual, int qtd_atual, int energia_atual, int poder_atual, int limite_energia, int *melhor_p, int *melhor_e, Pokemon *melhor_temp, int *tamanho_melhor) {
