@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "combinacoes.h"
 
 // Função recursiva que gera todas as combinações possíveis de pokémons (força bruta)
@@ -28,10 +29,11 @@ void gera_combinacoes(Pokemon *vetor, int n, int indice, Pokemon *atual, int qtd
     gera_combinacoes(vetor, n, indice + 1, atual, qtd_atual, energia_atual, poder_atual, limite_energia, melhor_p, melhor_e, melhor_temp, tamanho_melhor);
 }
 
-// Função de interface chamada pela main para preparar os dados e iniciar a recursão
+// Função chamada pela main para preparar os dados e iniciar a recursão
 void combinacao_equipes(PokeLista *pokemons, int n, int limite_energia, PokeLista *equipe_vencedora, int *poder_maximo, int *energia_consumida) {
-    // Converte a lista encadeada num vetor estático para acesso rápido por indice
-    Pokemon vetor[n];
+    // Aloca o vetor dinamicamente no heap
+    Pokemon *vetor = (Pokemon *) malloc(n * sizeof(Pokemon));
+
     Celula *no = pokemons->primeiro->prox;
     for (int i = 0; i < n && no != NULL; i++) {
         vetor[i] = no->poke;
