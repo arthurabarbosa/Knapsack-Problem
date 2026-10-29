@@ -1,5 +1,5 @@
 #ifndef COMBINACOES_H
-#define COMBINACOES_H // Mudei os guards de ALGORITMOS para COMBINACOES (MUDANÇA 2)
+#define COMBINACOES_H
 #include "treinador.h"
 
 // Assinatura da funcao recursiva que explora todas as combinacoes de pokemons sem podas antecipadas

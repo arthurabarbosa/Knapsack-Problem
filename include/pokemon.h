@@ -1,6 +1,6 @@
 #ifndef POKEMON_H
 #define POKEMON_H
-#define TAMANHO_NOME 50 // fica em aberto see a gente vai usar isso, aparentemente isso evita que o buffer estoure, mesmo sem erro de compilação, caso um valor seja alterado e outro não ("caso apareçam números fixos no código, estes devem ser definidos como constantes")
+#define TAMANHO_NOME 50
 #define TAMANHO_TIPO 50
 
 // Estrutura que representa um Pokémon
