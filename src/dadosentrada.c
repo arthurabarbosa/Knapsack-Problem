@@ -37,30 +37,37 @@ int carregar_dados(char *caminho_arquivo, DadosEntrada *dados) {
 }
 
 
+// Retorna o ponteiro para o nome do primeiro treinador
 char* get_nome_t1(DadosEntrada *dados) {
     return dados->nome_t1;
 }
 
+// Retorna o ponteiro para o nome do segundo treinador
 char* get_nome_t2(DadosEntrada *dados) {
     return dados->nome_t2;
 }
 
+// Retorna a quantidade N de Pokémons disponíveis
 int get_numpokes(DadosEntrada *dados) {
     return dados->N;
 }
 
+// Retorna o limite de energia suportado
 int get_limenergia(DadosEntrada *dados) {
     return dados->limite_energia;
 }
 
+// Retorna o endereço de memória do poder total
 int* get_podertotal(DadosEntrada *dados) {
     return &dados->poder_total;
 }
 
+// Retorna o endereço de memória da energia total
 int* get_energiatotal(DadosEntrada *dados) {
     return &dados->energia_total;
 }
 
+// Retorna o ponteiro para a lista encadeada de pokemons
 PokeLista* get_pokemons(DadosEntrada *dados) {
     return &dados->pokemons;
 }
