@@ -58,7 +58,7 @@ int remove_lista(PokeLista *lista, int id) {
 // Busca e retorna os dados do Pokémon com determinado ID
 Pokemon busca_lista(PokeLista *lista, int id) {
     Pokemon nao_encontrado;
-    nao_encontrado.id = -1; // Retorno padrão para indicar insucesso
+    nao_encontrado.id = ID_INVALIDO; // Retorno para indicar falha
 
     if (lista->primeiro == lista->ultimo) {
         return nao_encontrado;

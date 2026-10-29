@@ -39,8 +39,11 @@ int distribui_equipes(Treinador *t1, Treinador *t2, PokeLista *equipe_escolhida)
     return 1;
 }
 
-// Exibe informações sobre o treinador 
+// Imprime as informações do treinador de acordo com o exemplo
 int imprime_treinador(Treinador *tr) {
-    printf("Treinador(a) %s", tr->nome);
+    printf("Treinador %d: %s\n", tr->idt, tr->nome);
+    printf("Mochila do Treinador:\n");
+    imprime_lista(&tr->mochila);
+
     return 0;
 }

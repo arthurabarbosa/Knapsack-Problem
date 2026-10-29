@@ -4,16 +4,19 @@
 #include "pokelista.h"
 #include "treinador.h"
 #include "combinacoes.h"
+#define ARQUIVO_PADRAO "arquivo.txt"
+#define MS_POR_SEGUNDO 1000.0
 
 int main() {
     // Abre o arquivo de entrada em modo de leitura
-    FILE *arquivo = fopen("arquivo.txt", "r");
+    FILE *arquivo = fopen(ARQUIVO_PADRAO, "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de entrada!\n");
         return 1;
     }
 
-    char nome_t1[50], nome_t2[50];
+    // Declaração de variáveis
+    char nome_t1[TAMANHO_NOME], nome_t2[TAMANHO_NOME];
     int N, limite_energia;
 
     // Lê o cabeçalho contendo o nome dos treinadores, a quantidade de pokémons e o limite de energia
@@ -31,7 +34,7 @@ int main() {
         Pokemon p;
         
         int num, poder, energia;
-        char nome[50], tipo[50];
+        char nome[TAMANHO_NOME], tipo[TAMANHO_TIPO];
 
         // Lê os atributos de cada pokemon
         fscanf(arquivo, "%d %s %s %d %d", &num, nome, tipo, &poder, &energia);
@@ -40,6 +43,7 @@ int main() {
         set(&p, num, num, nome, tipo, poder, energia);
         insere_lista(&pokemons, p);
     }
+
     // Fecha o arquivo após concluir a leitura
     fclose(arquivo);
 
@@ -54,49 +58,45 @@ int main() {
     int poder_total = 0;
     int energia_total = 0;
 
-    // Variáveis para medir o tempo de processamento
-    clock_t inicio, fim;
+    // Variáveis para medição de tempo
+    struct timespec inicioTempo, fimTempo;
 
-    // Regista o momento inicial da execucão do algoritmo
-    inicio = clock();
+    // Registra o instante inicial
+    timespec_get(&inicioTempo, TIME_UTC);
 
-    // Executa o algoritmo de força bruta recursiva para encontrar a melhor equipe
+    // Executa o algoritmo de força bruta recursivo
     combinacao_equipes(&pokemons, N, limite_energia, &equipe_escolhida, &poder_total, &energia_total);
 
-    // Regista o momento final da execução
-    fim = clock();
+    // Registra o instante final
+    timespec_get(&fimTempo, TIME_UTC);
 
-    // Calcula o tempo total decorrido em segundos
-    double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    // Calcula o tempo decorrido em segundos
+    double tempo_execucao = (fimTempo.tv_sec - inicioTempo.tv_sec) + (fimTempo.tv_nsec - inicioTempo.tv_nsec) / 1e9;
 
     // Exibe o resumo com os resultados obtidos pela seleção
     printf("=== Melhor Equipe Encontrada === \n");
     printf("Poder Total: %d\n", poder_total);
     printf("Energia Total Consumida: %d / %d\n", energia_total, limite_energia);
-    printf("Tempo de Execucao: %f segundos (%f ms)\n\n", tempo_execucao, tempo_execucao*1000.0);
+    printf("Tempo de Execucao: %f segundos (%f ms)\n\n", tempo_execucao, tempo_execucao * MS_POR_SEGUNDO);
 
-    // Exibe os pokemons que compõem a equipe ideal vencedora
+    // Exibe os pokemons que compõem a equipe ideal escolhida
     printf("Pokemons Selecionados para a Equipe:\n");
     imprime_lista(&equipe_escolhida);
     printf("\n");
 
     // Inicializa as estruturas dos treinadores com base nos nomes lidos do arquivo
     Treinador t1, t2;
-    inicializa_treinador(&t1, 1, nome_t1);
-    inicializa_treinador(&t2, 2, nome_t2);
+    inicializa_treinador(&t1, ID_TREINADOR_1, nome_t1);
+    inicializa_treinador(&t2, ID_TREINADOR_2, nome_t2);
 
     distribui_equipes(&t1, &t2, &equipe_escolhida);
 
-    // Exibe o conteúdo final das mochilas de cada treinador
+    // Mostra o conteudo das mochilas dos treinadores sem precisar de uma quantidade grande de 'printf'
     printf("=== Equipes dos Treinadores ===\n");
-    printf("Treinador 1: %s\n", t1.nome);
-    printf("Mochila do Treinador:\n");
-    imprime_lista(&t1.mochila);
+    imprime_treinador(&t1);
     printf("\n");
 
-    printf("Treinador 2: %s\n", t2.nome);
-    printf("Mochila do Treinador:\n");
-    imprime_lista(&t2.mochila);
+    imprime_treinador(&t2);
     printf("\n");
 
     return 0;

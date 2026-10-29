@@ -1,6 +1,7 @@
 #ifndef POKELISTA_H
 #define POKELISTA_H
 #include "pokemon.h"
+#define ID_INVALIDO -1
 
 // Célula da lista encadeada contendo um Pokémon e o ponteiro para a próxima célula
 typedef struct Celula {

@@ -1,12 +1,14 @@
 #ifndef POKEMON_H
 #define POKEMON_H
+#define TAMANHO_NOME 50 // fica em aberto see a gente vai usar isso, aparentemente isso evita que o buffer estoure, mesmo sem erro de compilação, caso um valor seja alterado e outro não ("caso apareçam números fixos no código, estes devem ser definidos como constantes")
+#define TAMANHO_TIPO 50
 
 // Estrutura que representa um Pokémon
 typedef struct {
     int id;             // Identificador único do Pokémon na execução
     int numero_pokedex; // Número correspondente na Pokédex
-    char nome[50];      // Nome do Pokémon
-    char tipo[50];      // Tipo (ex: Fogo, Água, etc.)
+    char nome[TAMANHO_NOME];      // Nome do Pokémon
+    char tipo[TAMANHO_TIPO];      // Tipo (ex: Fogo, Água, etc.)
     int pt_poder;       // Pontos de poder do pokemon
     int energia_gasta;  // Energia gasta pelo PokeMonitor
 } Pokemon;

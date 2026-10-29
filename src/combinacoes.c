@@ -21,11 +21,11 @@ void gera_combinacoes(Pokemon *vetor, int n, int indice, Pokemon *atual, int qtd
         return;
     }
 
-    // Ramo principal: inclui o pokémon atual na combinação em construção e avança para o próximo indice
+    // Ramo 1: inclui o pokémon atual na combinação em construção e avança para o próximo indice
     atual[qtd_atual] = vetor[indice];
     gera_combinacoes(vetor, n, indice + 1, atual, qtd_atual + 1, energia_atual + vetor[indice].energia_gasta, poder_atual + vetor[indice].pt_poder, limite_energia, melhor_p, melhor_e, melhor_temp, tamanho_melhor);
 
-    // Ramo alternativo: não inclui o pokémon atual e avança para o próximo indice mantendo o estado anterior
+    // Ramo 2: não inclui o pokémon atual e avança para o próximo indice mantendo o estado anterior
     gera_combinacoes(vetor, n, indice + 1, atual, qtd_atual, energia_atual, poder_atual, limite_energia, melhor_p, melhor_e, melhor_temp, tamanho_melhor);
 }
 
@@ -40,7 +40,7 @@ void combinacao_equipes(PokeLista *pokemons, int n, int limite_energia, PokeList
         no = no->prox;
     }
 
-    int melhor_p = -1;
+    int melhor_p = 0;
     int melhor_e = 0;
     Pokemon melhor_temp[n];
     int tamanho_melhor = 0;
@@ -58,4 +58,7 @@ void combinacao_equipes(PokeLista *pokemons, int n, int limite_energia, PokeList
     for (int i = 0; i < tamanho_melhor; i++) {
         insere_lista(equipe_vencedora, melhor_temp[i]);
     }
+    
+    // Libera a memória alocada dinamicamente
+    free(vetor);
 }
