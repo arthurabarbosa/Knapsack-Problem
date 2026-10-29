@@ -1,83 +1,47 @@
 #include <stdio.h>
 #include <time.h>
-#include "pokemon.h"
 #include "pokelista.h"
 #include "treinador.h"
 #include "combinacoes.h"
+#include "dadosentrada.h"
 #define ARQUIVO_PADRAO "arquivo.txt"
 #define MS_POR_SEGUNDO 1000.0
 
 int main() {
-    // Abre o arquivo de entrada em modo de leitura
-    FILE *arquivo = fopen(ARQUIVO_PADRAO, "r");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo de entrada!\n");
-        return 1;
-    }
 
-    // Declaração de variáveis
-    char nome_t1[TAMANHO_NOME], nome_t2[TAMANHO_NOME];
-    int N, limite_energia;
+    DadosEntrada dados;
 
-    // Lê o cabeçalho contendo o nome dos treinadores, a quantidade de pokémons e o limite de energia
-    fscanf(arquivo, "%s", nome_t1);
-    fscanf(arquivo, "%s", nome_t2);
-    fscanf(arquivo, "%d", &N);
-    fscanf(arquivo, "%d", &limite_energia);
-
-    // Inicializa a lista encadeada para armazenar os pokémons disponiveis
-    PokeLista pokemons;
-    inicializa_lista(&pokemons);
-    
-    // Lê cada um dos pokémons do arquivo e insere eles na lista
-    for (int i = 0; i < N; i++) {
-        Pokemon p;
-        
-        int num, poder, energia;
-        char nome[TAMANHO_NOME], tipo[TAMANHO_TIPO];
-
-        // Lê os atributos de cada pokemon
-        fscanf(arquivo, "%d %s %s %d %d", &num, nome, tipo, &poder, &energia);
-
-        // Configura os dados do pokémon e adiciona-o à lista
-        set(&p, num, num, nome, tipo, poder, energia);
-        insere_lista(&pokemons, p);
-    }
-
-    // Fecha o arquivo após concluir a leitura
-    fclose(arquivo);
+    carregar_dados(ARQUIVO_PADRAO, &dados);
 
     // Exibe os pokemons carregados no terminal
     printf("--- Pokemons Carregados ---\n");
-    imprime_lista(&pokemons);
+    imprime_lista(get_pokemons(&dados));
     printf("\n");
 
     printf("=== Executando Selecao de Pokemons (Forca Bruta) ===\n\n");
 
     PokeLista equipe_escolhida;
-    int poder_total = 0;
-    int energia_total = 0;
 
     // Variáveis para medição de tempo
-    struct timespec inicioTempo, fimTempo;
+    struct timespec iniciotempo, fimtempo;
 
     // Registra o instante inicial
-    timespec_get(&inicioTempo, TIME_UTC);
+    timespec_get(&iniciotempo, TIME_UTC);
 
     // Executa o algoritmo de força bruta recursivo
-    combinacao_equipes(&pokemons, N, limite_energia, &equipe_escolhida, &poder_total, &energia_total);
+    combinacao_equipes(get_pokemons(&dados), get_numpokes(&dados), get_limenergia(&dados), &equipe_escolhida, get_podertotal(&dados), get_energiatotal(&dados));
 
     // Registra o instante final
-    timespec_get(&fimTempo, TIME_UTC);
+    timespec_get(&fimtempo, TIME_UTC);
 
     // Calcula o tempo decorrido em segundos
-    double tempo_execucao = (fimTempo.tv_sec - inicioTempo.tv_sec) + (fimTempo.tv_nsec - inicioTempo.tv_nsec) / 1e9;
+    double tempo_execucao = (fimtempo.tv_sec - iniciotempo.tv_sec) + (fimtempo.tv_nsec - iniciotempo.tv_nsec) / 1e9;
 
     // Exibe o resumo com os resultados obtidos pela seleção
     printf("=== Melhor Equipe Encontrada === \n");
-    printf("Poder Total: %d\n", poder_total);
-    printf("Energia Total Consumida: %d / %d\n", energia_total, limite_energia);
-    printf("Tempo de Execucao: %f segundos (%f ms)\n\n", tempo_execucao, tempo_execucao * MS_POR_SEGUNDO);
+    printf("Poder Total: %d\n", *get_podertotal(&dados));
+    printf("Energia Total Consumida: %d / %d\n", *get_energiatotal(&dados), get_limenergia(&dados));
+    printf("Tempo de Execucao: %.9f segundos (%.6f ms)\n\n", tempo_execucao, tempo_execucao * MS_POR_SEGUNDO);
 
     // Exibe os pokemons que compõem a equipe ideal escolhida
     printf("Pokemons Selecionados para a Equipe:\n");
@@ -86,8 +50,8 @@ int main() {
 
     // Inicializa as estruturas dos treinadores com base nos nomes lidos do arquivo
     Treinador t1, t2;
-    inicializa_treinador(&t1, ID_TREINADOR_1, nome_t1);
-    inicializa_treinador(&t2, ID_TREINADOR_2, nome_t2);
+    inicializa_treinador(&t1, ID_TREINADOR_1, get_nome_t1(&dados));
+    inicializa_treinador(&t2, ID_TREINADOR_2, get_nome_t2(&dados));
 
     distribui_equipes(&t1, &t2, &equipe_escolhida);
 

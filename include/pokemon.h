@@ -16,7 +16,7 @@ typedef struct {
 // Atribui os valores aos campos do Pokémon
 int set(Pokemon *pk, int id, int numero, char *name, char *type, int pt_poder, int energia_gasta);
 
-// Funções Getters para acessar as propriedades do Pokémon
+// Funções get para acessar as propriedades do Pokémon
 int get_id(Pokemon *pk);
 int get_numeropokedex(Pokemon *pk);
 void get_nome(Pokemon *pk, char *name);
