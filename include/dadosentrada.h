@@ -1,5 +1,6 @@
 #ifndef DADOSENTRADA_H
 #define DADOSENTRADA_H
+#define MS_POR_SEGUNDO 1000.0
 
 #include <stdio.h>
 #include "pokemon.h"

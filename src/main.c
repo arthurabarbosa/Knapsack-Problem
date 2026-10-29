@@ -5,7 +5,6 @@
 #include "combinacoes.h"
 #include "dadosentrada.h"
 #define ARQUIVO_PADRAO "arquivo.txt"
-#define MS_POR_SEGUNDO 1000.0
 
 int main() {
 
