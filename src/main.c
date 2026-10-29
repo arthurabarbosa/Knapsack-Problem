@@ -4,7 +4,6 @@
 #include "treinador.h"
 #include "combinacoes.h"
 #include "dadosentrada.h"
-#define ARQUIVO_PADRAO "arquivo.txt"
 
 int main() {
 

@@ -1,6 +1,7 @@
 #ifndef DADOSENTRADA_H
 #define DADOSENTRADA_H
 #define MS_POR_SEGUNDO 1000.0
+#define ARQUIVO_PADRAO "arquivo.txt"
 
 #include <stdio.h>
 #include "pokemon.h"
