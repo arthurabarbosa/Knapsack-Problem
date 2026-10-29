@@ -18,6 +18,7 @@ int main() {
 
     printf("=== Executando Selecao de Pokemons (Forca Bruta) ===\n\n");
 
+    // Inicializa uma nova variável do tipo PokeLista
     PokeLista equipe_escolhida;
 
     // Variáveis para medição de tempo
@@ -51,6 +52,7 @@ int main() {
     inicializa_treinador(&t1, ID_TREINADOR_1, get_nome_t1(&dados));
     inicializa_treinador(&t2, ID_TREINADOR_2, get_nome_t2(&dados));
 
+    // Realiza a distribuição das esquipes
     distribui_equipes(&t1, &t2, &equipe_escolhida);
 
     // Mostra o conteudo das mochilas dos treinadores sem precisar de uma quantidade grande de 'printf'
